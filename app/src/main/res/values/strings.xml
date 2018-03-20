@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Volt</string>
+    <string name="volt">Voltage</string>
+    <string name="current">Current</string>
+    <string name="power">Power</string>
+    <string name="result">Result</string>
+    <string name="sing_in">Sing In</string>
+    <string name="sing_up">Sing Up</string>
+    <string name="login_hint">Log in</string>
+    <string name="password_hint">Password</string>
+</resources>

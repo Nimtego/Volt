@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.nimtego.volt.view.VoltMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/voltage_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:gravity="center"
+            android:longClickable="false"
+            android:text="@string/volt"/>
+
+        <EditText
+            android:id="@+id/current_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:gravity="center"
+            android:longClickable="false"
+            android:text="@string/current"/>
+
+        <EditText
+            android:id="@+id/power_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:focusable="false"
+            android:longClickable="false"
+            android:cursorVisible="false"
+            android:gravity="center"
+            android:text="@string/power"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/voltage_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/current_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/power_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_weight="0.45"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/result_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:gravity="center"
+            android:hint="@string/result"
+            android:inputType="textPersonName"
+            android:longClickable="false"/>
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/result_button"
+            android:layout_width="64dip"
+            android:layout_height="64dip"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="70dp"
+            android:onClick="onClick"
+            android:src="@drawable/ic_action_tick"
+            app:cb_color="#99CC00"
+            app:cb_pressedRingWidth="8dip"/>
+
+    </LinearLayout>
+
+</LinearLayout>

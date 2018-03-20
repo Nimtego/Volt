@@ -17,8 +17,7 @@ public class VoltPresenter implements Presenter {
     private Entity mEntity;
     private VoltActivity mVoltActivity;
 
-    public VoltPresenter(VoltActivity voltActivity) {
-        mVoltActivity = voltActivity;
+    public VoltPresenter() {
         mEntity = new Entity();
     }
 

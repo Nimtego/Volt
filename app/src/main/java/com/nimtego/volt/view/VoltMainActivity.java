@@ -18,7 +18,13 @@ public class VoltMainActivity extends AppCompatActivity implements VoltActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volt_main);
-        mPresenter = new VoltPresenter(this);
+        init();
+
+    }
+
+    private void init() {
+        mPresenter = new VoltPresenter();
+        mPresenter.attachView(this);
         setCurrent("0");
         setPower("0");
         setVoltage("0");
@@ -77,8 +83,14 @@ public class VoltMainActivity extends AppCompatActivity implements VoltActivity 
         super.onDestroy();
         mPresenter.detachView();
     }
-
+    @Override
     public void onClick(View view) {
         mPresenter.onClick(view);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.detachView();
     }
 }

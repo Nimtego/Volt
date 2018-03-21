@@ -8,4 +8,10 @@
     <string name="sing_up">Sing Up</string>
     <string name="login_hint">Log in</string>
     <string name="password_hint">Password</string>
+    <string name="title_activity_user_drawer">UserDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

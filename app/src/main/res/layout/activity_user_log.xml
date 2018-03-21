@@ -12,8 +12,9 @@
         android:id="@+id/imageView"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:elevation="50dp"
         app:srcCompat="@drawable/button_oval"/>
 
     <LinearLayout
@@ -21,31 +22,55 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/logIn_edit_text"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:inputType="textPersonName"
-            android:padding="20dp"
-            android:hint="@string/login_hint"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/login_color"
+            android:backgroundTintMode="src_in"
+            android:textColorHint="@color/login_color">
 
-        <EditText
-            android:id="@+id/password_edit_text"
+            <EditText
+                android:id="@+id/logIn_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/login_color"
+                android:gravity="center"
+                android:hint="@string/login_hint"
+                android:inputType="text"
+                android:shadowColor="@color/login_color"
+                android:textColor="@color/login_color"
+                android:textColorHighlight="@color/login_color"
+                android:textColorHint="@color/login_color"
+                android:textColorLink="@color/login_color"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="3.53"
-            android:ems="10"
-            android:padding="20dp"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:inputType="textPassword"
-            android:hint="@string/password_hint"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/login_color"
+            android:backgroundTintMode="src_in"
+            android:elevation="50dp"
+            android:textColorHint="@color/login_color">
+
+            <EditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:backgroundTint="@color/login_color"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:shadowColor="@color/login_color"
+                android:textColor="@color/login_color"
+                android:textColorHighlight="@color/login_color"
+                android:textColorHint="@color/login_color"
+                android:textColorLink="@color/login_color"/>
+
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
         <Button
@@ -63,19 +88,19 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:textColor="@color/colorAccent"
-            android:text="@string/sing_in"/>
+            android:text="@string/sing_in"
+            android:textColor="@color/login_color"/>
 
         <Button
             android:id="@+id/sing_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:elevation="100dp"
-            android:layout_weight="1"
-            android:text="@string/sing_up"/>
+            android:text="@string/sing_up"
+            android:textColor="@color/login_color"/>
     </LinearLayout>
 
 </LinearLayout>

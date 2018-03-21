@@ -1,5 +1,8 @@
 package com.nimtego.volt.presenter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -9,6 +12,7 @@ import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.model.UserLoginException;
 import com.nimtego.volt.model.UsersModel;
 import com.nimtego.volt.view.AmountsActivity;
+import com.nimtego.volt.view.UserDrawerActivity;
 import com.nimtego.volt.view.UserLogInterface;
 
 /**
@@ -53,6 +57,7 @@ public class UserLogPresenter implements Presenter {
                 user.setPassword(password);
                 mUserModel.addUser(user);
                 mUserLogInterface.toast("User " +logIn +" add" );
+                intent();
             }
         }
     }
@@ -89,5 +94,10 @@ public class UserLogPresenter implements Presenter {
     @Override
     public void detachView() {
         mUserLogInterface = null;
+    }
+
+    private void intent() {
+        Intent intent = new Intent((Context) mUserLogInterface, UserDrawerActivity.class);
+        ((AppCompatActivity)mUserLogInterface).startActivity(intent);
     }
 }

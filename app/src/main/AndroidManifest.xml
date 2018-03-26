@@ -23,6 +23,8 @@
             android:label="@string/title_activity_user_drawer"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".view.SheetAmountsWork">
+        </activity>
     </application>
 
 </manifest>

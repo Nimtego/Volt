@@ -55,18 +55,12 @@
         </LinearLayout>
 
     </LinearLayout>
+            <fragment
+                android:id="@+id/listFragment"
+                android:name="com.nimtego.volt.view.ProjectFragment"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                tools:layout="@android:layout/list_content">
+            </fragment>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/login_color"
-            android:orientation="vertical">
-
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

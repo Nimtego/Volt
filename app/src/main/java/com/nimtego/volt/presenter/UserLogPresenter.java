@@ -12,6 +12,7 @@ import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.model.UserLoginException;
 import com.nimtego.volt.model.UsersModel;
 import com.nimtego.volt.view.AmountsActivity;
+import com.nimtego.volt.view.SheetAmountsWork;
 import com.nimtego.volt.view.UserLogInterface;
 import com.nimtego.volt.view.VoltMainActivity;
 
@@ -97,7 +98,7 @@ public class UserLogPresenter implements Presenter {
     }
 
     private void intent() {
-        Intent intent = new Intent((Context) mUserLogInterface, VoltMainActivity.class);
+        Intent intent = new Intent((Context) mUserLogInterface, SheetAmountsWork.class);
         ((AppCompatActivity)mUserLogInterface).startActivity(intent);
 
     }

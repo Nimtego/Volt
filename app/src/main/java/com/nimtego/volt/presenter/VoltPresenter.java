@@ -5,17 +5,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.nimtego.volt.R;
-import com.nimtego.volt.view.AmountsActivity;
-import com.nimtego.volt.view.VoltActivity;
 import com.nimtego.volt.model.Entity;
+import com.nimtego.volt.view.VoltView;
 
 /**
  * Created by nimtego_loc on 18.03.2018.
  */
 
-public class VoltPresenter implements Presenter {
+public class VoltPresenter extends AbstractBasePresenter<VoltView> {
     private Entity mEntity;
-    private VoltActivity mVoltActivity;
 
     public VoltPresenter() {
         mEntity = new Entity();
@@ -26,9 +24,9 @@ public class VoltPresenter implements Presenter {
         Log.v(this.getClass().getSimpleName(), "method onClick");
 
         if (R.id.result_button == view.getId()) {
-            float current = Float.parseFloat(((EditText)mVoltActivity.getCurrent()).getText().toString());
-            float voltage = Float.parseFloat(((EditText)mVoltActivity.getVoltage()).getText().toString());
-            float power = Float.parseFloat(((EditText)mVoltActivity.getPower()).getText().toString());
+            float current = Float.parseFloat(((EditText)commonView.getCurrent()).getText().toString());
+            float voltage = Float.parseFloat(((EditText)commonView.getVoltage()).getText().toString());
+            float power = Float.parseFloat(((EditText)commonView.getPower()).getText().toString());
             mEntity.setCurrent(current);
             mEntity.setPower(power);
             mEntity.setVoltage(voltage);
@@ -37,19 +35,14 @@ public class VoltPresenter implements Presenter {
     }
 
     @Override
-    public void attachView(AmountsActivity amountsActivity) {
-        if (amountsActivity instanceof VoltActivity)
-            mVoltActivity = (VoltActivity) amountsActivity;
-    }
-    @Override
-    public void detachView() {
-        mVoltActivity = null;
+    public void viewIsReady() {
+
     }
 
     private void calculate() {
 
         mEntity.setCalculate(mEntity.getCurrent()*mEntity.getPower()*mEntity.getVoltage());
         String str = String.valueOf(mEntity.getCalculate());
-        mVoltActivity.setResult(str);
+        commonView.setResult(str);
     }
 }

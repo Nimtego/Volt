@@ -15,7 +15,7 @@ import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.presenter.Presenter;
 import com.nimtego.volt.presenter.UserLogPresenter;
 
-public class UserLogActivity extends AppCompatActivity implements UserLogInterface{
+public class UserLogActivity extends AppCompatActivity implements UserLogView{
     private Presenter mPresenter;
     private EditText mLogIn;
     private EditText mPassword;
@@ -31,7 +31,7 @@ public class UserLogActivity extends AppCompatActivity implements UserLogInterfa
 
     private void init() {
         mPresenter = new UserLogPresenter();
-        mPresenter.attachView(this);
+        mPresenter.attachView(this); // TODO: 28.03.2018  
 
         findViewById(R.id.sing_in_button).setOnClickListener(new View.OnClickListener() {
             @Override

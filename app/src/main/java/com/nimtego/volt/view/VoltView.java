@@ -8,8 +8,7 @@ import com.nimtego.volt.presenter.Presenter;
  * Created by nimtego_loc on 18.03.2018.
  */
 
-public interface VoltActivity extends AmountsActivity{
-    void putPresenter(Presenter presenter);
+public interface VoltView extends CommonView{
     View getVoltage();
     View getCurrent();
     View getPower();

@@ -9,9 +9,8 @@ import android.widget.Toast;
 import com.nimtego.volt.R;
 import com.nimtego.volt.presenter.Presenter;
 import com.nimtego.volt.presenter.VoltPresenter;
-import com.nimtego.volt.view.VoltActivity;
 
-public class VoltMainActivity extends AppCompatActivity implements VoltActivity {
+public class VoltMainActivity extends AppCompatActivity implements VoltView {
     private Presenter mPresenter;
 
     @Override
@@ -24,15 +23,10 @@ public class VoltMainActivity extends AppCompatActivity implements VoltActivity 
 
     private void init() {
         mPresenter = new VoltPresenter();
-        mPresenter.attachView(this);
+        mPresenter.attachView(this); // TODO: 28.03.2018
         setCurrent("0");
         setPower("0");
         setVoltage("0");
-    }
-
-    @Override
-    public void putPresenter(Presenter presenter) {
-        this.mPresenter = presenter;
     }
 
     public void setVoltage(String text) {

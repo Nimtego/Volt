@@ -8,24 +8,26 @@ import android.view.View;
 
 import com.nimtego.volt.R;
 import com.nimtego.volt.model.User;
+import com.nimtego.volt.model.UserApi;
 import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.model.UserLoginException;
 import com.nimtego.volt.model.UsersModel;
-import com.nimtego.volt.view.AmountsActivity;
 import com.nimtego.volt.view.SheetAmountsWork;
-import com.nimtego.volt.view.UserLogInterface;
-import com.nimtego.volt.view.VoltMainActivity;
+import com.nimtego.volt.view.UserLogView;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by nimtego_loc on 20.03.2018.
  */
 
-public class UserLogPresenter implements Presenter {
-    private UserLogInterface mUserLogInterface;
+public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
     private UsersModel mUserModel;
+    private UserApi mUserApi;
 
     public UserLogPresenter() {
-        mUserModel = new UsersModel();
+        mUserModel = new UsersModel("https://rawgit.com/startandroid/data/master/messages/");
     }
 
     @Override
@@ -42,22 +44,27 @@ public class UserLogPresenter implements Presenter {
         }
     }
 
+    @Override
+    public void viewIsReady() {
+        // TODO: 28.03.2018
+    }
+
     private void singUp() {
-        UserData checkedUser = mUserLogInterface.getUserData();
+        UserData checkedUser = commonView.getUserData();
         String logIn = checkedUser.getLogIn();
         String password = checkedUser.getPassword();
         if (logIn.isEmpty() || password.isEmpty())
-            mUserLogInterface.toast("" +(logIn.isEmpty() ? "Log in " : "password ") +"cannot be empty.");
+            commonView.toast("" +(logIn.isEmpty() ? "Log in " : "password ") +"cannot be empty.");
         else {
             if (mUserModel.isBusyName(logIn)) {
-                mUserLogInterface.toast("Login is busy");
+                commonView.toast("Login is busy");
             }
             else {
                 User user = new User();
                 user.setLogIn(logIn);
                 user.setPassword(password);
                 mUserModel.addUser(user);
-                mUserLogInterface.toast("User " +logIn +" add" );
+                commonView.toast("User " +logIn +" add" );
                 intent();
             }
         }
@@ -65,41 +72,30 @@ public class UserLogPresenter implements Presenter {
 
 
     private void singIn() {
-        UserData checkedUser = mUserLogInterface.getUserData();
+        UserData checkedUser = commonView.getUserData();
         String logIn = checkedUser.getLogIn();
         String password = checkedUser.getPassword();
         if (logIn.isEmpty() || password.isEmpty())
-            mUserLogInterface.toast("" +(logIn.isEmpty() ? "Log in " : "password ") +"cannot be empty.");
+            commonView.toast("" +(logIn.isEmpty() ? "Log in " : "password ") +"cannot be empty.");
         else {
             try {
                 User user = mUserModel.getUser(logIn, password);
                 if (user == null) {
-                    mUserLogInterface.alarm("User not find\n Create user?");
+                    commonView.alarm("User not find\n Create user?");
                 }
                 else {
-                    mUserLogInterface.toast("User " +user.getLogIn() +"sing in");
+                    commonView.toast("User " +user.getLogIn() +"sing in");
                 }
             } catch (UserLoginException e) {
-                mUserLogInterface.toast(e.getMessage());
+                commonView.toast(e.getMessage());
             }
 
         }
     }
 
-    @Override
-    public void attachView(AmountsActivity amountsActivity) {
-        if (amountsActivity instanceof UserLogInterface)
-            mUserLogInterface = (UserLogInterface) amountsActivity;
-    }
-
-    @Override
-    public void detachView() {
-        mUserLogInterface = null;
-    }
-
     private void intent() {
-        Intent intent = new Intent((Context) mUserLogInterface, SheetAmountsWork.class);
-        ((AppCompatActivity)mUserLogInterface).startActivity(intent);
+        Intent intent = new Intent((Context) commonView, SheetAmountsWork.class);
+        ((AppCompatActivity)commonView).startActivity(intent);
 
     }
 }

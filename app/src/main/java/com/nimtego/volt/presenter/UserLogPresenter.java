@@ -3,7 +3,6 @@ package com.nimtego.volt.presenter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import com.nimtego.volt.R;
@@ -12,6 +11,7 @@ import com.nimtego.volt.model.UserApi;
 import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.model.UserLoginException;
 import com.nimtego.volt.model.UsersModel;
+import com.nimtego.volt.util.Log;
 import com.nimtego.volt.view.SheetAmountsWork;
 import com.nimtego.volt.view.UserLogView;
 
@@ -27,7 +27,8 @@ public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
     private UserApi mUserApi;
 
     public UserLogPresenter() {
-        mUserModel = new UsersModel("https://rawgit.com/startandroid/data/master/messages/");
+        Log.v("<<<< Constructor  >>>");
+       //TODO mUserModel = new UsersModel("https://rawgit.com/startandroid/data/master/messages/");
     }
 
     @Override
@@ -40,7 +41,7 @@ public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
                 singUp();
                 break;
             default:
-                Log.v("Button", "default in onClick method!!!");
+                Log.v("default in onClick method!!!");
         }
     }
 

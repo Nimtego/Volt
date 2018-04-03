@@ -18,11 +18,6 @@
         </activity>
         <activity android:name=".view.VoltMainActivity">
         </activity>
-        <activity
-            android:name=".view.UserDrawerActivity"
-            android:label="@string/title_activity_user_drawer"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
         <activity android:name=".view.SheetAmountsWork">
         </activity>
         <activity android:name=".view.MainMenuActivity">

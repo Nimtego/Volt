@@ -15,6 +15,8 @@ import com.nimtego.volt.util.Log;
 import com.nimtego.volt.view.SheetAmountsWork;
 import com.nimtego.volt.view.UserLogView;
 
+import javax.inject.Inject;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
     private UsersModel mUserModel;
     private UserApi mUserApi;
-
+    @Inject
     public UserLogPresenter() {
         Log.v("<<<< Constructor  >>>");
        //TODO mUserModel = new UsersModel("https://rawgit.com/startandroid/data/master/messages/");

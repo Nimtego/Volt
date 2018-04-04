@@ -13,11 +13,11 @@ import dagger.Provides;
 @Module
 public class PresenterModule {
     @Provides
-    Presenter<UserLogView> provideUserLog() {
+    UserLogPresenter provideUserLog() {
         return new UserLogPresenter();
     }
     @Provides
-    Presenter<VoltView> provideVolt() {
+    VoltPresenter provideVolt() {
         return new VoltPresenter();
     }
 }

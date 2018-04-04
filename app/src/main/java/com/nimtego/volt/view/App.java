@@ -1,9 +1,10 @@
-package com.nimtego.volt.presenter.module;
+package com.nimtego.volt.view;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 
-@SuppressLint("Registered")
+import com.nimtego.volt.presenter.module.AppComponent;
+import com.nimtego.volt.presenter.module.DaggerAppComponent;
+
 public class App extends Application {
     private static AppComponent component;
 

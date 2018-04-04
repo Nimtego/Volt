@@ -1,6 +1,5 @@
 package com.nimtego.volt.view;
 
-import android.app.AlarmManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -13,8 +12,6 @@ import android.widget.Toast;
 import com.nimtego.volt.R;
 import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.presenter.Presenter;
-import com.nimtego.volt.presenter.UserLogPresenter;
-import com.nimtego.volt.presenter.module.App;
 
 import javax.inject.Inject;
 
@@ -35,7 +32,7 @@ public class UserLogActivity extends AppCompatActivity implements UserLogView{
     }
 
     private void init() {
-        App.getComponent().injectsView(this);
+        mPresenter = App.getComponent().getUserLogPresenter();
         mPresenter.attachView(this); // TODO: 28.03.2018  
 
         findViewById(R.id.sing_in_button).setOnClickListener(new View.OnClickListener() {

@@ -1,9 +1,6 @@
-package com.nimtego.volt.view;
+package com.nimtego.volt.presenter.module;
 
 import android.app.Application;
-
-import com.nimtego.volt.presenter.module.AppComponent;
-import com.nimtego.volt.presenter.module.DaggerAppComponent;
 
 public class App extends Application {
     private static AppComponent component;

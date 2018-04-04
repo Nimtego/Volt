@@ -1,13 +1,7 @@
 package com.nimtego.volt.model;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.os.AsyncTask;
-
 import com.nimtego.volt.util.Log;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by nimtego_loc on 20.03.2018.
  */
 
-public class UsersModel {
+public class UsersModelRetrofit implements UserModelProvider {
     private UserApi mUserApi;
     private Retrofit mRetrofit;
     private List<User> mUserList;
@@ -29,7 +23,7 @@ public class UsersModel {
         this.dbHelper = dbHelper;
     }
     */
-    public UsersModel(String url) {
+    public UsersModelRetrofit(String url) {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -51,32 +45,36 @@ public class UsersModel {
             }
         });
     }
-
-    public User getUser(String logIn, String password) throws UserLoginException {
+    @Override
+    public User getUser(String name) {
         User user = null;
         for (User us: mUserList) {
-            if (us.getLogIn().equals(logIn)) {
-                if (us.getPassword().equals(password)) {
-                    user = us;
-                    break;
-                }
-                throw new UserLoginException("Wrong password");
+            if (us.getLogIn().equals(name)) {
+                user = us;
+                break;
             }
         }
         return user;
     }
+    @Override
+    public boolean addUser(User user) {
+        user.setId(UUID.randomUUID().getLeastSignificantBits());
+        mUserList.add(user);
+        return true;
+    }
 
-    public boolean isBusyName(String login) {
-        String log;
-        for (User us: mUserList) {
-            if (login.equals(us.getLogIn()))
-                return true;
-        }
+    @Override
+    public boolean removeUser(User user) {
         return false;
     }
 
-    public void addUser(User user) {
-        user.setId(UUID.randomUUID().getLeastSignificantBits());
-        mUserList.add(user);
+    @Override
+    public boolean isBusyName(String name) {
+        for (User us : mUserList) {
+            if (us.getLogIn().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -10,22 +10,19 @@ import com.nimtego.volt.model.User;
 import com.nimtego.volt.model.UserApi;
 import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.model.UserLoginException;
-import com.nimtego.volt.model.UsersModel;
+import com.nimtego.volt.model.UserModelProvider;
 import com.nimtego.volt.util.Log;
 import com.nimtego.volt.view.SheetAmountsWork;
 import com.nimtego.volt.view.UserLogView;
 
 import javax.inject.Inject;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 /**
  * Created by nimtego_loc on 20.03.2018.
  */
 
 public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
-    private UsersModel mUserModel;
+    private UserModelProvider mUserModelProvider;
     private UserApi mUserApi;
     @Inject
     public UserLogPresenter() {
@@ -59,14 +56,14 @@ public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
         if (logIn.isEmpty() || password.isEmpty())
             commonView.toast("" +(logIn.isEmpty() ? "Log in " : "password ") +"cannot be empty.");
         else {
-            if (mUserModel.isBusyName(logIn)) {
+            if (mUserModelProvider.isBusyName(logIn)) {
                 commonView.toast("Login is busy");
             }
             else {
                 User user = new User();
                 user.setLogIn(logIn);
                 user.setPassword(password);
-                mUserModel.addUser(user);
+                mUserModelProvider.addUser(user);
                 commonView.toast("User " +logIn +" add" );
                 intent();
             }
@@ -81,18 +78,18 @@ public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
         if (logIn.isEmpty() || password.isEmpty())
             commonView.toast("" +(logIn.isEmpty() ? "Log in " : "password ") +"cannot be empty.");
         else {
-            try {
-                User user = mUserModel.getUser(logIn, password);
+                User user = mUserModelProvider.getUser(logIn); //todo check password user
                 if (user == null) {
                     commonView.alarm("User not find\n Create user?");
                 }
                 else {
-                    commonView.toast("User " +user.getLogIn() +"sing in");
+                    if (user.getPassword().equals(password)) {
+                        commonView.toast("User " + user.getLogIn() + "sing in");
+                    }
+                    else {
+                        commonView.toast("Incorrect password");
+                    }
                 }
-            } catch (UserLoginException e) {
-                commonView.toast(e.getMessage());
-            }
-
         }
     }
 

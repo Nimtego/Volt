@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.nimtego.volt.R;
 import com.nimtego.volt.model.UserData;
 import com.nimtego.volt.presenter.Presenter;
+import com.nimtego.volt.presenter.module.App;
 
 import javax.inject.Inject;
 

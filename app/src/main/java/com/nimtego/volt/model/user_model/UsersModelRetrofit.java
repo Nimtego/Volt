@@ -1,5 +1,7 @@
-package com.nimtego.volt.model;
+package com.nimtego.volt.model.user_model;
 
+import com.nimtego.volt.model.User;
+import com.nimtego.volt.model.UserApi;
 import com.nimtego.volt.util.Log;
 
 import java.util.List;
@@ -15,14 +17,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by nimtego_loc on 20.03.2018.
  */
 
-public class UsersModelRetrofit implements UserModelProvider {
+public class UsersModelRetrofit extends UserModelCommon implements UserModelProvider {
     private UserApi mUserApi;
     private Retrofit mRetrofit;
-    private List<User> mUserList;
-/*    public UsersModel(DbHelper dbHelper) {
-        this.dbHelper = dbHelper;
-    }
-    */
+
     public UsersModelRetrofit(String url) {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(url)

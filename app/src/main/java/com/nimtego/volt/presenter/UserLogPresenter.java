@@ -1,7 +1,9 @@
 package com.nimtego.volt.presenter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -9,13 +11,15 @@ import com.nimtego.volt.R;
 import com.nimtego.volt.model.User;
 import com.nimtego.volt.model.UserApi;
 import com.nimtego.volt.model.UserData;
-import com.nimtego.volt.model.UserLoginException;
-import com.nimtego.volt.model.UserModelProvider;
+import com.nimtego.volt.model.user_model.UserModelPreferences;
+import com.nimtego.volt.model.user_model.UserModelProvider;
 import com.nimtego.volt.util.Log;
 import com.nimtego.volt.view.SheetAmountsWork;
 import com.nimtego.volt.view.UserLogView;
 
 import javax.inject.Inject;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by nimtego_loc on 20.03.2018.
@@ -50,6 +54,8 @@ public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
     }
 
     private void singUp() {
+        SharedPreferences sp = ((AppCompatActivity)commonView).getPreferences(MODE_PRIVATE);
+        mUserModelProvider = new UserModelPreferences(sp);
         UserData checkedUser = commonView.getUserData();
         String logIn = checkedUser.getLogIn();
         String password = checkedUser.getPassword();
@@ -63,15 +69,18 @@ public class UserLogPresenter extends AbstractBasePresenter <UserLogView> {
                 User user = new User();
                 user.setLogIn(logIn);
                 user.setPassword(password);
-                mUserModelProvider.addUser(user);
-                commonView.toast("User " +logIn +" add" );
-                intent();
+                if (mUserModelProvider.addUser(user)) {
+                    commonView.toast("User " + logIn + " add");
+                    intent();
+                }
             }
         }
     }
 
 
     private void singIn() {
+        SharedPreferences sp = ((AppCompatActivity)commonView).getPreferences(MODE_PRIVATE);
+        mUserModelProvider = new UserModelPreferences(sp);
         UserData checkedUser = commonView.getUserData();
         String logIn = checkedUser.getLogIn();
         String password = checkedUser.getPassword();

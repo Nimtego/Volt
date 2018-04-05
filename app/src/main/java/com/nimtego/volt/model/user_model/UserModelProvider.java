@@ -1,4 +1,6 @@
-package com.nimtego.volt.model;
+package com.nimtego.volt.model.user_model;
+
+import com.nimtego.volt.model.User;
 
 public interface UserModelProvider {
     User getUser(String name);
